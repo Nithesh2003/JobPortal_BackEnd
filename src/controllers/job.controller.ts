@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import pool from '../config/db';
 
-// GET all jobs
+//GET all jobs
 export const getAllJobs = async (_: Request, res: Response) => {
   try {
     const [rows] = await pool.query('SELECT * FROM jobs');
@@ -12,7 +12,7 @@ export const getAllJobs = async (_: Request, res: Response) => {
   }
 };
 
-// CREATE new job
+//CREATE new job
 export const createJob = async (req: Request, res: Response) => {
   try {
     const job = req.body;
@@ -24,7 +24,7 @@ export const createJob = async (req: Request, res: Response) => {
   }
 };
 
-// UPDATE job by ID
+//UPDATE job by ID
 export const updateJob = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -42,7 +42,7 @@ export const updateJob = async (req: Request, res: Response) => {
   }
 };
 
-// DELETE job by ID
+//DELETE job by ID
 export const deleteJob = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -59,7 +59,7 @@ export const deleteJob = async (req: Request, res: Response) => {
   }
 };
 
-// GET job by ID
+//GET job by ID
 export const getJobById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

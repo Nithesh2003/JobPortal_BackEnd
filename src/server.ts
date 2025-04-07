@@ -15,14 +15,14 @@ app.use(express.json());
 
 // Base Route
 app.get('/', (_, res) => {
-  res.send('✅ Job Portal Backend Server is Running & DB Connected!');
+  res.send('Job Portal Backend Server is Running & DB Connected!');
 });
 
 // API Routes
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
 
-// Error Handling Middleware (optional but good practice)
+// Error Handling 
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   const status = err.status || 500;
   const message = err.message || 'Something went wrong!';
@@ -31,7 +31,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at: http://localhost:${PORT}`);
+  console.log('Server running at: http://localhost:${PORT}');
 });
 
 
