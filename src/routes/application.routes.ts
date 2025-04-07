@@ -1,8 +1,15 @@
-import { Router } from 'express';
-import { getApplications, applyJob } from '../controllers/application.controller';
+import express from 'express';
+import {
+  getAllApplications,
+  getApplicationById,
+  applyToJob
+} from '../controllers/application.controller';
 
-const router = Router();
-router.get('/', getApplications);
-router.post('/', applyJob);
+const router = express.Router();
+
+router.get('/applications', getAllApplications);
+router.get('/applications/:id', getApplicationById);
+router.post('/jobs/:id/apply', applyToJob);
+
 
 export default router;
