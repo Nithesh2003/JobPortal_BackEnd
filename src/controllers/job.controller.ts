@@ -59,3 +59,19 @@ export const deleteJob = async (req: Request, res: Response) => {
   }
 };
 
+// GET job by ID
+export const getJobById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const [rows]: any = await pool.query('SELECT * FROM jobs WHERE id = ?', [id]);
+
+    if (rows.length === 0) {
+      throw { status: 404, message: 'Job not found' };
+    }
+
+    res.status(200).json(rows[0]);
+  } catch (err: unknown) {
+    const error = err as { status?: number; message?: string };
+    throw error.status ? error : { status: 500, message: 'Failed to fetch job' };
+  }
+};

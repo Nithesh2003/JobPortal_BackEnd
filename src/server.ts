@@ -1,23 +1,34 @@
 import express from 'express';
 import dotenv from 'dotenv';
-
-// Step 1: Load .env variables
-dotenv.config();
-
-// Step 2: Import the DB connection (this will auto-run and test DB connection)
+import cors from 'cors';
+import jobRoutes from './routes/job.routes';
+import applicationRoutes from './routes/application.routes';
 import './config/db';
+
+dotenv.config();
 
 const app = express();
 
-// Step 3: Middleware to parse JSON (for POST/PUT requests)
+// Middleware
+app.use(cors());
 app.use(express.json());
 
-// Step 4: Example route to confirm backend is working
-app.get('/', (req, res) => {
+// Base Route
+app.get('/', (_, res) => {
   res.send('✅ Job Portal Backend Server is Running & DB Connected!');
 });
 
-// Step 5: Start server
+// API Routes
+app.use('/api/jobs', jobRoutes);
+app.use('/api/applications', applicationRoutes);
+
+// Error Handling Middleware (optional but good practice)
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const status = err.status || 500;
+  const message = err.message || 'Something went wrong!';
+  res.status(status).json({ error: message });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at: http://localhost:${PORT}`);
