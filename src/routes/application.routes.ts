@@ -7,8 +7,8 @@ import {
 
 const router = express.Router();
 
-router.get('/applications', getAllApplications);
-router.get('/applications/:id', getApplicationById);
+router.get('/', getAllApplications);
+router.get('/:id', getApplicationById);
 router.post('/jobs/:id/apply', applyToJob);
 
 

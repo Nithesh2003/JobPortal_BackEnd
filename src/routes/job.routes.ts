@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get('/jobs', getAllJobs);
-router.get('/jobs/:id', getJobById);
-router.post('/jobs', createJob);
-router.put('/jobs/:id', updateJob);
-router.delete('/jobs/:id', deleteJob);
+router.get('/', getAllJobs);
+router.get('/:id', getJobById);
+router.post('/', createJob);
+router.put('/:id', updateJob);
+router.delete('/:id', deleteJob);
 
 export default router;
