@@ -11,3 +11,4 @@ build/
 # Ignore logs
 *.log
 .angular/
+FrontEnd/.angular/cache/
