@@ -57,7 +57,7 @@ export class ApplicationFormComponent implements OnInit {
         this.toastr.success('🎉 Application submitted successfully!', 'Success');
       },
       error: err => {
-        console.error('❌ Error submitting:', err);
+        console.error(' Error submitting:', err);
         this.toastr.error('Something went wrong. Please try again.');
       }
     });

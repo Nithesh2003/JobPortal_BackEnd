@@ -1,7 +1,7 @@
 .container {
   padding: 24px;
   font-family: Arial, sans-serif;
-  text-align: center; /* Center the content like h2 and filter-form */
+  text-align: center;
 }
 
 .section-title {
@@ -12,11 +12,11 @@
 
 .filter-form {
   display: flex;
-  justify-content: center; /* Center the filter items horizontally */
+  justify-content: center;
   gap: 20px;
   align-items: center;
   margin-bottom: 20px;
-  flex-wrap: wrap; /* Makes it responsive */
+  flex-wrap: wrap; 
 }
 
 .filter-field {

@@ -20,7 +20,7 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
   ];
   jobId: number | null = null;
 
-  @ViewChild(MatSort) sort!: MatSort; // 👈 Get reference to matSort
+  @ViewChild(MatSort) sort!: MatSort; 
 
   constructor(private http: HttpClient) {}
 
@@ -29,14 +29,14 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort; // 👈 Assign the sort after view init
+    this.dataSource.sort = this.sort;
   }
 
   fetchApplications(): void {
     this.http.get<any[]>('http://localhost:5000/api/applications').subscribe({
       next: (data) => {
-        console.log('Fetched data:', data); // Keep for debugging
-        this.dataSource.data = data; // No need to parse applied_at
+        console.log('Fetched data:', data); 
+        this.dataSource.data = data; 
       },
       error: (err) => {
         console.error('Error fetching applications:', err);
@@ -48,7 +48,7 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
     if (this.jobId) {
       this.dataSource.data = this.dataSource.data.filter(app => app.job_id == this.jobId);
     } else {
-      this.fetchApplications(); // Reset if empty
+      this.fetchApplications();
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobService } from '../../services/job.service';
-import { ToastrService } from 'ngx-toastr'; // ✅ Toastr import added
+import { ToastrService } from 'ngx-toastr'; 
 import { Location } from '@angular/common';
 
 @Component({
@@ -19,7 +19,7 @@ export class JobDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private jobService: JobService,
     private router: Router,
-    private toastr: ToastrService, // ✅ Toastr injected
+    private toastr: ToastrService, 
     private location: Location
   ) {}
   
@@ -47,16 +47,16 @@ export class JobDetailsComponent implements OnInit {
       (error) => {
         this.errorMessage = error.message || 'Failed to load job details.';
         this.isLoading = false;
-        this.toastr.error(this.errorMessage, 'Error'); // ✅ Error toast
+        this.toastr.error(this.errorMessage, 'Error'); 
       }
     );
   }
 
   applyToJob(): void {
-    const applicationData = { applicant: 'userId' }; // Replace with real user ID logic
+    const applicationData = { applicant: 'userId' }; 
     this.jobService.applyToJob(this.job.id, applicationData).subscribe(
-      () => this.toastr.success('Applied successfully!', 'Success'), // ✅ Success toast
-      () => this.toastr.error('Failed to apply.', 'Error') // ✅ Error toast
+      () => this.toastr.success('Applied successfully!', 'Success'), 
+      () => this.toastr.error('Failed to apply.', 'Error') 
     );
   }
 
@@ -64,11 +64,11 @@ export class JobDetailsComponent implements OnInit {
     if (confirm('Are you sure you want to delete this job?')) {
       this.jobService.deleteJob(jobId).subscribe(
         () => {
-          this.toastr.success('Job deleted successfully.', 'Deleted'); // ✅ Success toast
+          this.toastr.success('Job deleted successfully.', 'Deleted'); 
           this.router.navigate(['/poster/jobs']);
         },
         (error) => {
-          this.toastr.error('Failed to delete job.', 'Error'); // ✅ Error toast
+          this.toastr.error('Failed to delete job.', 'Error'); 
           console.error('Delete error:', error);
         }
       );

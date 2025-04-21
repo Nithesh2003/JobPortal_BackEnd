@@ -11,7 +11,7 @@
   padding: 0 20px;
   font-family: 'Roboto', sans-serif;
 
-  /* Background image with linear gradient overlay */
+
   &::before {
     content: '';
     position: absolute;
@@ -23,11 +23,11 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(5px); /* Adjust blur for the overlay effect */
+    filter: blur(5px); 
     z-index: -1;
   }
 
-  /* Linear gradient overlay */
+  
   &::after {
     content: '';
     position: absolute;
@@ -36,8 +36,8 @@
     bottom: 0;
     left: 0;
     background: linear-gradient(
-      rgba(94, 37, 210, 0.7),  /* Blue color overlay */
-      rgba(160, 241, 241, 0.593)   /* Cyan color overlay */
+      rgba(94, 37, 210, 0.7),  
+      rgba(160, 241, 241, 0.593)   
     );
     z-index: -1;
   }
@@ -70,10 +70,10 @@
 
 button:hover {
   background-color: #333333;
-  transform: scale(1.05); /* grow slightly */
+  transform: scale(1.05); 
 }
 
-/* Pulse animation */
+
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }

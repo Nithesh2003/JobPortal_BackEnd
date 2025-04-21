@@ -4,7 +4,7 @@
 
 .sidebar {
   width: 240px;
-  background-color: #f9f9f9;
+  background-color: #0b0249;
   border-right: 1px solid #ddd;
   padding: 20px 0;
 }
@@ -24,16 +24,16 @@
   border-radius: 8px;
   font-weight: 500;
   font-size: 17px;
-  color: #333;
+  color: #f6f2f2;
 }
 
 .sidebar-buttons button mat-icon {
   margin-right: 10px;
-  color: #616161;
+  color: #f6f2f2;
 }
 
 .sidebar-buttons button:hover {
-  background-color: #eeeeee;
+  background-color: #535050;
 }
 
 .active-btn {
