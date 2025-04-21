@@ -1,0 +1,63 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleSidebar()">
+    <mat-icon>{{ sidebarCollapsed ? 'menu_open' : 'menu' }}</mat-icon>
+  </button>
+  <span class="title">🚀 Job Portal</span>
+  <span class="spacer"></span>
+  <span class="welcome-message">Welcome! Job Poster</span>
+  <span class="spacer"></span>
+  <!-- Post Job Button -->
+<button mat-button
+routerLink="/poster/jobs/new"
+routerLinkActive="active-btn"
+[routerLinkActiveOptions]="{ exact: true }">
+<mat-icon>add_circle</mat-icon>
+
+</button>
+
+<!-- Home Button -->
+<button mat-button
+routerLink="/"
+routerLinkActive="active-btn"
+[routerLinkActiveOptions]="{ exact: true }">
+<mat-icon>home</mat-icon>
+
+</button>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="main-container">
+  <mat-sidenav [mode]="'side'" [opened]="!sidebarCollapsed" class="sidebar" role="navigation">
+
+    <div class="sidebar-buttons">
+      <button mat-button
+              routerLink="/poster/jobs"
+              routerLinkActive="active-btn"
+              [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>list_alt</mat-icon>
+        <span>View All Jobs</span>
+      </button>
+
+      <button mat-button
+              routerLink="/poster/jobs/new"
+              routerLinkActive="active-btn"
+              [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>post_add</mat-icon>
+        <span>Post New Job</span>
+      </button>
+
+      <button mat-button
+              routerLink="/"
+              routerLinkActive="active-btn"
+              [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

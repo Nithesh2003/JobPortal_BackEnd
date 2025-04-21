@@ -1,0 +1,107 @@
+/* Container for job listings */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Section title */
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0c0000;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Job Cards Container */
+.job-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Job Card Styling */
+.job-card {
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.company-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0c0000;
+}
+
+.job-title {
+  font-size: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.job-info {
+  padding: 16px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.job-info p {
+  margin: 8px 0;
+}
+
+.job-info strong {
+  color: #0c0000;
+}
+
+/* Action Buttons Styling */
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+}
+
+.applied-jobs-button {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .job-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .company-logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+.actions-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.view-details-button {
+  margin-right: auto; /* Aligns to the left */
+}

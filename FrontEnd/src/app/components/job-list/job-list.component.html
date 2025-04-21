@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <h2 class="section-title">Job Listings</h2>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="text-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- No Jobs Message -->
+  <div *ngIf="!isLoading && !errorMessage && jobs.length === 0" class="alert alert-info">
+    No jobs available at the moment.
+  </div>
+
+  <!-- Job Cards -->
+  <div class="job-cards-container" *ngIf="!isLoading && !errorMessage && jobs.length > 0">
+    <mat-card *ngFor="let job of jobs" class="job-card mat-elevation-z8">
+      <mat-card-header>
+        <div class="header-content">
+          <mat-card-title class="company-name">{{ job.company_name }}</mat-card-title>
+          <mat-card-subtitle class="job-title">{{ job.job_title }}</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="job-info">
+          <p><strong>Location:</strong> {{ job.location }}</p>
+          <p><strong>Employment Type:</strong> {{ job.job_type }}</p>
+          <p><strong>Salary:</strong> {{ job.salary_range || 'N/A' }}</p>
+          <p><strong>Application Deadline:</strong> {{ job.application_deadline | date }}</p>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="actions-right">
+        <!-- View Details Button -->
+        <button mat-stroked-button color="primary"  [routerLink]="['/', userType, 'jobs', job.id]" matTooltip="View Job Details" class="view-details-button">
+          View Details
+        </button>
+
+        <!-- Applicant View - Apply Button -->
+        <ng-container *ngIf="userType === 'applicant'">
+          <button mat-stroked-button color="accent" [routerLink]="['/applicant/apply', job.id]" matTooltip="Apply for Job">
+            Apply
+          </button>
+        </ng-container>
+
+        <!-- Poster View - Edit and Delete Buttons -->
+        <ng-container *ngIf="userType === 'poster'">
+          <button mat-fab color="primary" [routerLink]="['/poster/jobs/edit', job.id]" matTooltip="Edit Job Posting">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-fab color="warn" (click)="deleteJob(job.id)" matTooltip="Delete Job Posting">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-container>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- View Applied Jobs Button 
+  <div class="applied-jobs-button" *ngIf="userType === 'applicant'">
+    <button mat-raised-button color="warn" routerLink="/applicant/applications">
+      View Applied Jobs
+    </button>
+  </div>-->
+</div>

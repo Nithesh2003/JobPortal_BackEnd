@@ -1,0 +1,104 @@
+<div class="job-form-container">
+  <h2>{{ isEditMode ? 'Edit Job' : 'Post a new Job' }}</h2>
+
+  <div class="job-form-wrapper">
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="job-form">
+      <!-- Job Title -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Title</mat-label>
+        <input matInput formControlName="job_title" />
+        <mat-error *ngIf="jobForm.get('job_title')?.hasError('required')">
+          Job title is required.
+        </mat-error>
+        <mat-error *ngIf="jobForm.get('job_title')?.hasError('maxlength')">
+          Maximum 100 characters allowed.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Company Name -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="company_name" />
+        <mat-error *ngIf="jobForm.get('company_name')?.hasError('required')">
+          Company name is required.
+        </mat-error>
+        <mat-error *ngIf="jobForm.get('company_name')?.hasError('maxlength')">
+          Maximum 100 characters allowed.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Location -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" />
+        <mat-error *ngIf="jobForm.get('location')?.hasError('required')">
+          Location is required.
+        </mat-error>
+        <mat-error *ngIf="jobForm.get('location')?.hasError('maxlength')">
+          Maximum 100 characters allowed.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Job Type -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Type</mat-label>
+        <mat-select formControlName="job_type">
+          <mat-option value="Full-time">Full-time</mat-option>
+          <mat-option value="Part-time">Part-time</mat-option>
+          <mat-option value="Internship">Internship</mat-option>
+          <mat-option value="Contract">Contract</mat-option>
+        </mat-select>
+        <mat-error *ngIf="jobForm.get('job_type')?.hasError('required')">
+          Job type is required.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Salary Range -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Salary Range</mat-label>
+        <input matInput formControlName="salary_range" />
+        <mat-error *ngIf="jobForm.get('salary_range')?.hasError('maxlength')">
+          Maximum 50 characters allowed.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Job Description -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Description</mat-label>
+        <textarea matInput rows="3" formControlName="job_description"></textarea>
+        <mat-error *ngIf="jobForm.get('job_description')?.hasError('required')">
+          Job description is required.
+        </mat-error>
+        <mat-error *ngIf="jobForm.get('job_description')?.hasError('maxlength')">
+          Maximum 1000 characters allowed.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Application Deadline -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Application Deadline</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="application_deadline" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="jobForm.get('application_deadline')?.hasError('required')">
+          Application deadline is required.
+        </mat-error>
+        <mat-error *ngIf="jobForm.get('application_deadline')?.hasError('futureDate')">
+          Deadline must be a future date.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Feedback Messages -->
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+      <!-- Buttons -->
+      <div class="dialog-actions">
+        <button mat-stroked-button color="warn" type="button" (click)="closeDialog()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="jobForm.invalid || isLoading">
+          {{ isEditMode ? 'Update Job' : 'Post Job' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

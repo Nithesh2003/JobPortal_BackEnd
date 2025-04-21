@@ -1,0 +1,81 @@
+.home-container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  gap: 20px;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif;
+
+  /* Background image with linear gradient overlay */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('src/assets/office.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px); /* Adjust blur for the overlay effect */
+    z-index: -1;
+  }
+
+  /* Linear gradient overlay */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      rgba(94, 37, 210, 0.7),  /* Blue color overlay */
+      rgba(160, 241, 241, 0.593)   /* Cyan color overlay */
+    );
+    z-index: -1;
+  }
+}
+
+.quote {
+  font-size: 18px;
+  font-style: italic;
+  color: #0b0b0b;
+  margin-top: 20px;
+  max-width: 600px;
+}
+
+.button-group {
+  background-color: transparent;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  padding: 15px 30px;
+  font-size: 16px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+button:hover {
+  background-color: #333333;
+  transform: scale(1.05); /* grow slightly */
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}

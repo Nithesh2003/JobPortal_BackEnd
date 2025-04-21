@@ -1,0 +1,51 @@
+<div class="container mt-4"> 
+  <h2 class="section-title">Job Details</h2>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="text-center">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+<!-- Go Back Icon Button -->
+<button mat-icon-button color="primary" (click)="goBack()" matTooltip="Go Back">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+  <!-- Job Details -->
+  <div *ngIf="!isLoading && !errorMessage" class="job-details">
+    <div class="job-detail">
+      <p><strong>Job Title:</strong> {{ job.job_title }}</p>
+      <p><strong>Company Name:</strong> {{ job.company_name }}</p>
+      <p><strong>Location:</strong> {{ job.location }}</p>
+      <p><strong>Job Type:</strong> {{ job.job_type }}</p>
+      <p><strong>Salary Range:</strong> {{ job.salary_range || 'N/A' }}</p>
+      <p><strong>Job Description:</strong> {{ job.job_description }}</p>
+      <p><strong>Application Deadline:</strong> {{ job.application_deadline | date }}</p>
+    </div>
+
+    <!-- Action Buttons Section -->
+    <div class="actions">
+      
+
+      <ng-container *ngIf="userType === 'poster'">
+        <!-- Centered Edit and Delete Buttons -->
+        <div class="edit-delete-buttons">
+          <button mat-raised-button color="accent" [routerLink]="['/poster/jobs/edit', job.id]">
+            Edit
+          </button>
+          <button mat-raised-button color="warn" (click)="deleteJob(job.id)">
+            Delete
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="userType === 'applicant'">
+        <button mat-stroked-button color="accent" [routerLink]="['/applicant/apply', job.id]" matTooltip="Apply for Job">
+          Apply
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+.main-container {
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+.sidebar-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.sidebar-buttons button {
+  justify-content: flex-start;
+  text-align: left;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #333;
+}
+
+.sidebar-buttons button mat-icon {
+  margin-right: 10px;
+  color: #616161;
+}
+
+.sidebar-buttons button:hover {
+  background-color: #eeeeee;
+}
+
+.active-btn {
+  background-color: #e3f2fd !important;
+  color: #1976d2 !important;
+}
+
+.active-btn mat-icon {
+  color: #1976d2 !important;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-weight: bold;
+  font-size: 22px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 1px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+mat-toolbar button {
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+mat-toolbar button mat-icon {
+  margin-right: 6px;
+}

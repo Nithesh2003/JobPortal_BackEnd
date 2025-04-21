@@ -1,0 +1,54 @@
+<div class="application-container mat-elevation-z4">
+  <h2>Apply for a Job</h2>
+
+  <!-- Go Back Icon Button -->
+  <button mat-icon-button color="primary" (click)="goBack()" matTooltip="Go Back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <form [formGroup]="applicationForm" (ngSubmit)="applyForJob()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput id="applicantName" formControlName="applicantName" />
+      <mat-error *ngIf="f['applicantName'].touched && f['applicantName'].invalid">
+        <span *ngIf="f['applicantName'].errors?.['required']">Name is required.</span>
+        <span *ngIf="f['applicantName'].errors?.['maxlength']">Max 100 characters allowed.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput id="email" formControlName="email" />
+      <mat-error *ngIf="f['email'].touched && f['email'].invalid">
+        <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+        <span *ngIf="f['email'].errors?.['email']">Invalid email format.</span>
+        <span *ngIf="f['email'].errors?.['maxlength']">Max 100 characters allowed.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Resume Link</mat-label>
+      <input matInput id="resume" formControlName="resumeLink" />
+      <mat-error *ngIf="f['resumeLink'].touched && f['resumeLink'].invalid">
+        <span *ngIf="f['resumeLink'].errors?.['required']">Resume link is required.</span>
+        <span *ngIf="f['resumeLink'].errors?.['maxlength']">Max 255 characters allowed.</span>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Job ID</mat-label>
+      <input matInput id="jobId" formControlName="jobId" readonly />
+      <mat-error *ngIf="f['jobId'].touched && f['jobId'].invalid">
+        <span *ngIf="f['jobId'].errors?.['required']">Job ID is required.</span>
+      </mat-error>
+    </mat-form-field>
+    
+
+    <div class="btn-wrapper">
+      <button mat-raised-button color="primary" type="submit"
+              [disabled]="!applicationForm.valid || isSubmitted">
+        {{ isSubmitted ? 'Applied' : 'Apply' }}
+      </button>
+    </div>
+  </form>
+</div>

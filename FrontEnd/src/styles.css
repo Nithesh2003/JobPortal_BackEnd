@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Change background color */
+body, .mat-app-background {
+    background-color: #e1e8ee; /* Light grayish blue */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+  }
+  
+  /* Override primary button */
+  .mat-mdc-raised-button.mat-primary {
+    background-color: #0D1B2A;
+    color: white;
+  }
+  
+  .mat-mdc-raised-button.mat-primary:hover {
+    background-color: #08111d;
+  }
+  
+  /* Accent buttons */
+  .mat-mdc-raised-button.mat-accent {
+    background-color: #A9D6E5;
+    color: #2F2F2F;
+  }
+  
+  .mat-mdc-raised-button.mat-accent:hover {
+    background-color: #6faab3;
+  }
+  
+  /* Warn buttons */
+  .mat-mdc-raised-button.mat-warn {
+    background-color: #b11010;
+    color: white;
+  }
+  
+  .mat-mdc-raised-button.mat-warn:hover {
+    background-color: #910c0c;
+  }
+  
+
+  

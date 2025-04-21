@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="header-container">
+    <h2 class="section-title">Applications</h2>
+  
+    <!-- Filter Section -->
+    <div class="filter-form">
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Filter by Job ID</mat-label>
+        <input matInput type="number" [(ngModel)]="jobId" placeholder="Enter Job ID" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="filterByJobId()">Filter</button>
+    </div>
+  </div>
+  
+
+  <!-- Applications Table -->
+  <div class="table-container" *ngIf="dataSource.data.length > 0">
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table" matSort>
+
+
+      <!-- Application ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Application ID</th>
+        <td mat-cell *matCellDef="let app">{{ app.id }}</td>
+      </ng-container>
+
+      <!-- Job ID Column -->
+      <ng-container matColumnDef="job_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Job ID</th>
+        <td mat-cell *matCellDef="let app">{{ app.job_id }}</td>
+      </ng-container>
+
+      <!-- Applicant Name Column -->
+      <ng-container matColumnDef="applicant_name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let app">{{ app.applicant_name }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let app">{{ app.email }}</td>
+      </ng-container>
+
+      <!-- Resume Column -->
+      <ng-container matColumnDef="resume_link">
+        <th mat-header-cell *matHeaderCellDef>Resume</th>
+        <td mat-cell *matCellDef="let app">
+          <a [href]="app.resume_link" target="_blank" matTooltip="View Resume">View</a>
+        </td>
+      </ng-container>
+
+      <!-- Applied At Column -->
+<ng-container matColumnDef="applied_at">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Applied At</th>
+  <td mat-cell *matCellDef="let app">
+    {{ app.applied_at ? (app.applied_at | date: 'short') : 'Not Available' }}
+  </td>
+</ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <!-- No Applications Message -->
+  <p *ngIf="dataSource.data.length === 0" class="no-applications">
+    No applications found.
+  </p>
+  
+</div>

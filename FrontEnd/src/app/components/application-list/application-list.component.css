@@ -1,0 +1,40 @@
+.container {
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  text-align: center; /* Center the content like h2 and filter-form */
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.filter-form {
+  display: flex;
+  justify-content: center; /* Center the filter items horizontally */
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+.filter-field {
+  width: 250px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.full-width-table {
+  width: 100%;
+  min-width: 800px;
+}
+
+.no-applications {
+  color: #777;
+  margin-top: 20px;
+  font-style: italic;
+}
