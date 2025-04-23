@@ -11,9 +11,14 @@
     {{ errorMessage }}
   </div>
 
-  <!-- No Jobs Message -->
-  <div *ngIf="!isLoading && !errorMessage && jobs.length === 0" class="alert alert-info">
-    No jobs available at the moment.
+  <div class="filter-form">
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Filter by Job ID</mat-label>
+      <input matInput type="number" [(ngModel)]="jobId" placeholder="Enter Job ID">
+      <button mat-icon-button matSuffix color="primary" (click)="searchByJobId()" matTooltip="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
 
   <!-- Job Cards -->
@@ -36,12 +41,10 @@
       </mat-card-content>
 
       <mat-card-actions class="actions-right">
-        <!-- View Details Button -->
+        <!-- View Details and apply Button -->
         <button mat-stroked-button color="primary"  [routerLink]="['/', userType, 'jobs', job.id]" matTooltip="View Job Details" class="view-details-button">
           View Details
         </button>
-
-        <!-- Applicant View - Apply Button -->
         <ng-container *ngIf="userType === 'applicant'">
           <button mat-stroked-button color="accent" [routerLink]="['/applicant/apply', job.id]" matTooltip="Apply for Job">
             Apply
@@ -61,10 +64,4 @@
     </mat-card>
   </div>
 
-  <!-- View Applied Jobs Button 
-  <div class="applied-jobs-button" *ngIf="userType === 'applicant'">
-    <button mat-raised-button color="warn" routerLink="/applicant/applications">
-      View Applied Jobs
-    </button>
-  </div>-->
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-application-list',
@@ -19,10 +20,11 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
     'applied_at'
   ];
   jobId: number | null = null;
+  allApplications: any[] = []; // To store all applications
 
-  @ViewChild(MatSort) sort!: MatSort; 
+  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.fetchApplications();
@@ -36,19 +38,34 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
     this.http.get<any[]>('http://localhost:5000/api/applications').subscribe({
       next: (data) => {
         console.log('Fetched data:', data); 
-        this.dataSource.data = data; 
+        this.allApplications = data;  // Store the full applications list
+        this.dataSource.data = data;  // Initially, set the dataSource to full list
       },
       error: (err) => {
         console.error('Error fetching applications:', err);
+        this.toastr.error('Error fetching applications.', 'Error');
       }
     });
   }
-  
+
   filterByJobId(): void {
+    if (this.jobId === 0) {
+      this.toastr.error('No job found with the specified Job ID.', 'Error');
+    } 
+    
     if (this.jobId) {
-      this.dataSource.data = this.dataSource.data.filter(app => app.job_id == this.jobId);
+      // Filter the data based on the entered jobId
+      const filteredApplications = this.allApplications.filter(app => app.job_id === this.jobId);
+
+      if (filteredApplications.length > 0) {
+        this.dataSource.data = filteredApplications; // Show filtered data
+      } else {  
+        this.dataSource.data = []; // Clear the data if no matching job
+        this.toastr.error('No applications found with the specified Job ID.', 'Error');
+      }
     } else {
-      this.fetchApplications();
+      // If no jobId is entered, reset to the full list of applications
+      this.dataSource.data = this.allApplications;
     }
   }
 }

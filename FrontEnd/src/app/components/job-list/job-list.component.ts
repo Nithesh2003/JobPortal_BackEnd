@@ -9,11 +9,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-  jobs: any[] = [];
+  jobs: any[] = []; // for displaying
+  jobId: number | null = null;
   isLoading = true;
   errorMessage = '';
   userType: 'applicant' | 'poster' = 'applicant'; 
   displayedColumns: string[] = ['title', 'company', 'location', 'type', 'salary', 'deadline', 'actions'];
+  alljobs: any[] = []; // for storing full data
 
   constructor(
     private jobService: JobService,
@@ -42,7 +44,7 @@ export class JobListComponent implements OnInit {
       next: (data) => {
         this.jobs = data;
         this.isLoading = false;
-       
+        this.alljobs = data;
       },
       error: (error) => {
         this.errorMessage = error.message || 'Failed to load job listings.';
@@ -52,6 +54,27 @@ export class JobListComponent implements OnInit {
     });
   }
 
+  searchByJobId(): void {
+    if (this.jobId === 0 ) {
+      this.toastr.error('No job found with the specified Job ID.', 'Error');
+    }
+    
+    if (this.jobId) {
+      // Filter jobs by the entered Job ID
+      const filteredJobs = this.alljobs.filter(job => job.id === this.jobId);
+      
+      if (filteredJobs.length > 0) {
+        this.jobs = filteredJobs;
+      } else {
+        this.jobs=[];
+        this.toastr.error('No jobs found with the specified Job ID.', 'Error');
+        // Fetch all jobs if no job is found for the given ID
+      }
+    } else {
+      this.jobs = this.alljobs; // Fetch all jobs if no Job ID is entered
+    }
+  }
+  
   // Delete job 
   deleteJob(id: number): void {
     if (confirm('Are you sure you want to delete this job?')) {

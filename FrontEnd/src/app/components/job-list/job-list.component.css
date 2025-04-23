@@ -29,6 +29,15 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.filter-form {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; 
+}
+
 .job-card-header {
   display: flex;
   justify-content: space-between;
@@ -73,7 +82,6 @@
   color: #0c0000;
 }
 
-/* Action Buttons Styling */
 .action-buttons {
   display: flex;
   justify-content: flex-end;
@@ -103,5 +111,5 @@
   gap: 8px;
 }
 .view-details-button {
-  margin-right: auto; /* Aligns to the left */
+  margin-right: auto; 
 }
