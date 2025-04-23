@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'jobs', pathMatch: 'full' },
       { path: 'jobs', component: JobListComponent },
       { path: 'jobs/:id', component: JobDetailsComponent },
-      { path: 'apply/:id', component: ApplicationFormComponent },
+      { path: 'jobs/:id/apply', component: ApplicationFormComponent },
       { path: 'applications', component: ApplicationListComponent }
       
     ]

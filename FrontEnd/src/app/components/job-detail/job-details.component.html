@@ -42,7 +42,7 @@
         </div>
       </ng-container>
       <ng-container *ngIf="userType === 'applicant'">
-        <button mat-stroked-button color="accent" [routerLink]="['/applicant/apply', job.id]" matTooltip="Apply for Job">
+        <button mat-stroked-button color="accent" [routerLink]="['/applicant/jobs', job.id, 'apply']" matTooltip="Apply for Job">
           Apply
         </button>
       </ng-container>
