@@ -13,19 +13,9 @@ import { JobFormComponent } from './components/job-form/job-form.component';
 import { JobDetailsComponent } from './components/job-detail/job-details.component';
 import { ApplicationFormComponent } from './components/application-form/application-form.component';
 import { JobposterLayoutComponent } from './layout/jobposter-layout/jobposter-layout.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
 import { ApplicantLayoutComponent } from './layout/applicant-layout/applicant-layout.component';
 import { CommonModule } from '@angular/common';
-import { ApplicationListComponent} from './components/application-list/application-list.component'; 
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTableModule } from '@angular/material/table'; 
-import { MatSortModule } from '@angular/material/sort';
+import { ApplicationListComponent} from './components/application-list/application-list.component';  
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -42,12 +32,11 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MatTooltipModule,MatTableModule,MatProgressSpinnerModule,MatButtonModule,MatInputModule,
-    BrowserAnimationsModule,MatListModule,
-    MaterialModule, MatSidenavModule,MatCardModule,
-    MatToolbarModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule,MatSortModule,
+    ReactiveFormsModule,
     FormsModule,CommonModule,ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
