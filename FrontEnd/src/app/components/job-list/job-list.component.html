@@ -11,7 +11,8 @@
     {{ errorMessage }}
   </div>
 
-  <div class="filter-form">
+  <!-- Filter by Job ID -->
+  <div *ngIf="!errorOccurred" class="filter-form">
     <mat-form-field appearance="outline" class="filter-field">
       <mat-label>Filter by Job ID</mat-label>
       <input matInput type="number" [(ngModel)]="jobId" placeholder="Enter Job ID">

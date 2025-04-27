@@ -50,7 +50,7 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
 
   filterByJobId(): void {
     if (this.jobId === 0) {
-      this.toastr.error('No job found with the specified Job ID.', 'Error');
+      this.toastr.error('No application found listing all the jobs.', 'Error');
     } 
     
     if (this.jobId) {
@@ -64,7 +64,6 @@ export class ApplicationListComponent implements OnInit, AfterViewInit {
         this.toastr.error('No applications found with the specified Job ID.', 'Error');
       }
     } else {
-      // If no jobId is entered, reset to the full list of applications
       this.dataSource.data = this.allApplications;
     }
   }

@@ -9,13 +9,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-  jobs: any[] = []; // for displaying
+  jobs: any[] = []; // store the list of jobs
   jobId: number | null = null;
   isLoading = true;
   errorMessage = '';
+  errorOccurred = false;
   userType: 'applicant' | 'poster' = 'applicant'; 
   displayedColumns: string[] = ['title', 'company', 'location', 'type', 'salary', 'deadline', 'actions'];
-  alljobs: any[] = []; // for storing full data
+  alljobs: any[] = []; // store the complete list of jobs retrieved from the server
 
   constructor(
     private jobService: JobService,
@@ -47,16 +48,17 @@ export class JobListComponent implements OnInit {
         this.alljobs = data;
       },
       error: (error) => {
-        this.errorMessage = error.message || 'Failed to load job listings.';
         this.isLoading = false;
-        this.toastr.error(this.errorMessage, 'Error'); 
+        this.toastr.error(this.errorMessage, 'Error');
+        this.errorOccurred = true; 
+        this.errorMessage = `Error fetching jobs: ${error.status} - ${error.statusText}`;
       }
     });
   }
 
   searchByJobId(): void {
     if (this.jobId === 0 ) {
-      this.toastr.error('No job found with the specified Job ID.', 'Error');
+      this.toastr.error('No job found with the specified Job ID listing all the jobs.', 'Error');
     }
     
     if (this.jobId) {
@@ -68,10 +70,9 @@ export class JobListComponent implements OnInit {
       } else {
         this.jobs=[];
         this.toastr.error('No jobs found with the specified Job ID.', 'Error');
-        // Fetch all jobs if no job is found for the given ID
       }
     } else {
-      this.jobs = this.alljobs; // Fetch all jobs if no Job ID is entered
+      this.jobs = this.alljobs;
     }
   }
   
@@ -82,7 +83,10 @@ export class JobListComponent implements OnInit {
         this.jobs = this.jobs.filter(job => job.id !== id);
         this.toastr.warning('Job deleted successfully.', 'Deleted'); 
       }, (err) => {
-        this.toastr.error('Failed to delete the job.', 'Error'); 
+        const errorMessage = `Failed to delete the job. Status: ${err.status} - ${err.statusText}`;
+        this.toastr.error(errorMessage, 'Error');
+        this.errorMessage = errorMessage;
+        this.errorOccurred = true;
       });
     }
   }

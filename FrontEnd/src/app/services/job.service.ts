@@ -1,4 +1,3 @@
-// src/app/services/job.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -43,6 +42,10 @@ export class JobService {
         ? `Client-side error: ${error.error.message}`
         : `Backend error: ${error.status} - ${error.message}`;
     console.error(message);
-    return throwError(() => new Error(message));
+    return throwError(() => ({
+      status: error.status,
+      statusText: error.statusText,
+      message: message
+    }));
   }
 }
